@@ -8,8 +8,11 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@trustwallet/wallet-core": "^3.1.8",
-    "@web3modal/ethereum": "^2.2.1",
-    "@web3modal/react": "^2.2.1",
+    "@walletconnect/sign-client": "^2.2.1",
+    "@walletconnect/web3-provider": "^1.8.0",
+    "@web3modal/ethereum": "^2.0.0-rc.3",
+    "@web3modal/react": "^2.0.0-rc.3",
+    "@web3modal/standalone": "^2.0.0-rc.3",
     "assert": "^2.0.0",
     "axios": "^1.2.2",
     "bootstrap": "^5.2.3",
@@ -29,9 +32,11 @@
     "react-scripts": "5.0.1",
     "readable-stream": "^4.3.0",
     "stream-http": "^3.2.0",
-    "wagmi": "^0.12.2",
-    "bignumber.js": "9.0.1",
-    "web-vitals": "^2.1.4"
+    "wagmi": "^0.10.10",
+    "walletconnect": "^1.7.8",
+    "web-vitals": "^2.1.4",
+    "web3": "^1.8.1",
+    "web3modal": "^1.9.11"
   },
   "scripts": {
     "start": "react-scripts start",
