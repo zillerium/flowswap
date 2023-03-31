@@ -9,7 +9,7 @@ const Checkout = (props) => {
       console.log(cart.items.length);
 	const checkout = async () => {
 
-   const response = await axios.post("https://peacioapi.com:3000/checkout", cart.items);
+   const response = await axios.post("https://peacioapi.com:3000/checkouthouse", cart.items);
                 console.log(response);
                 const url=response.data.data.url;
                 console.log(response.data.data.url);

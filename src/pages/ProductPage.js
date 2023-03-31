@@ -1,83 +1,125 @@
-import {useParams, useLocation, useNavigate} from "react-router-dom";
-import React, {useState, useContext} from 'react';
-import axios from 'axios';
-import {useQuery}  from 'react-query';
-import {Container, Button, Row, Col, Image} from 'react-bootstrap';
+import { useParams } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import axios from "axios";
+import { useQuery } from "react-query";
+import { Form, Container, Button, Row, Col } from "react-bootstrap";
 
-import {CartContext} from '../CartContext';
+import AssetCheckboxList from "../components/AssetCheckboxList";
+import AssetFeatures from "../components/AssetFeatures";
+import AssetFinancials from "../components/AssetFinancials";
+import AssetImages from "../components/AssetImages";
+import { CartContext } from "../CartContext";
+
+const ProductPage = () => {
+
+  const { productId } = useParams();
+  const cart = useContext(CartContext);
+  const baseUrl = `https://peacioapi.com:3000/getHouse/${productId}`;
+
+  const { data, isLoading, isError, refetch } = useQuery(
+    ["cat"],
+    () => axios.get(baseUrl).then((res) => res.data),
+    {
+      refetchOnWindowFocus: false,
+      staleTime: Infinity,
+    }
+  );
+
+  const onAddToCart = () => {
+    cart.addItemsToCart(data.data[0], quantity);
+  };
 
 
-//      let res = await searchDB(props.query);
-  //      console.log(res.data);
+  const [quantity, setQuantity] = useState(1);
+
+  if (isError) {
+    return <h1>Error</h1>;
+  }
+
+  if (isLoading) return <h1>Loading ..</h1>;
 
 
-const ProductPage = (props) => {
-const [search, setSearch] = useState("");
-	const {productId}=useParams();
-      const cart=useContext(CartContext);
-      const baseUrl = "https://peacioapi.com:3000/getPart/"+productId;
+  console.log("data ---- ", data);
 
-console.log(baseUrl);
-      const {data, isLoading, isError, refetch}= useQuery(["cat"],() => {
-               return   axios.get(baseUrl).then((res)=>res.data);
-      });
+  return (
+    <>
+      <Container>
+        <Row>
+          <Col>
+            <h1>{data.data[0].assetAddress}</h1>
+          </Col>
+        </Row>
+        <hr />
+        <Row>
+          <Col>
+            <AssetImages imageUrl={data.data[0].assetImageUrl} alt={data.data[0].assetAddress} />
+          </Col>
+	  <Col>
+	  <Row>
 
-if (isError) {
-    return <h1>error</h1>
-}
+        <Col>
 
-	if (isLoading) return <h1>Loading ..</h1>
-console.log(data.data[0]);
-	  const searchDB = async (searchVal) => {
+           <Form onSubmit={(e) => {
+              e.preventDefault();
+              onAddToCart();
+            }}>
+              <Form.Group controlId="quantity" className="d-flex align-items-centered">
+                <Form.Label column sm="5">Number Shares to Buy:</Form.Label>
+	        <Col sm="2">
+                <Form.Control
+                  type="number"
+                  min="1"
+                  value={quantity}
+                  onChange={(e) => setQuantity(parseInt(e.target.value))}
+                />
+	      </Col>
+	  <Col sm="6">
+              <Button type="submit" className="mx-4">
+                Invest
+              </Button>
+	  </Col>
+              </Form.Group>
+            </Form>
 
-          const baseUrl = "https://peacioapi.com:3000/getPart/"+searchVal;
-          let res = await axios.get(baseUrl);
-               console.log("res");
-               console.log(res.data);
-          //     setSearchedData(res.data.data[0]);
-          return res;
-	  }
-//        const {menu, setMenu, userName, setUserName} = useContext(MenuContext);
-//      const prodId = useLocation().state.prodId;
-//      const [location, setLocation]=useState();
-//      console.log("state = "+JSON.stringify(location));
-//      console.log("use params = "+JSON.stringify(useParams));
-        console.log("productId = "+productId);
-        console.log(cart);
-//      console.log("prodId = "+prodId);
-      //const imgurl =`http://peaciotest.com:3000/images/${data.data[0].partImgUrl}`;
-      const imgurl =`/images/${data.data[0].partImgUrl}`;
-console.log(imgurl);
-        return (
-          <>
-	  <div>
-          <h1>{data.data[0].partShortDesc} </h1>
-          </div>
-		<div>
-                    <Container>
-                       <Row>
-                           <Col><img src={imgurl} className="img-fluid shadow-4" 
-			   alt={data.data[0].partDesc} /></Col>
-                           <Col>
-		               <Row><Col>{data.data[0].partDesc}</Col></Row>
-                          <Row> <Col>Part: {data.data[0].partNumber}</Col></Row>
-                          <Row> <Col>Brand Part: {data.data[0].manPartNumber}</Col></Row>
-                          <Row> <Col>Part Option: {data.data[0].partOption}</Col></Row>
-                          <Row> <Col>Merchant: {data.data[0].merchantName}</Col></Row>
-                          <Row> <Col>Price: $ {data.data[0].partSalePrice.toFixed(2)}</Col></Row>
+          </Col>
+	  </Row>
+<Row>
+        <Col>
+            <AssetFinancials
+              assetValue={data.data[0].assetValue}
+              assetIncome={data.data[0].assetIncome}
+              assetYield={data.data[0].assetYield}
+              assetRiskRating={data.data[0].assetRiskRating}
+              assetNumberShares={data.data[0].assetNumberShares}
+            />
+          </Col>
+        <Col>
+            <AssetCheckboxList checkboxes={[
+              { label: "Tenant", checked: data.data[0].hasTenant },
+              { label: "Garden", checked: data.data[0].hasGarden },
+              { label: "Parking", checked: data.data[0].hasParking },
+              { label: "Double Glazing", checked: data.data[0].hasDoubleGlazing },
+            ]} />
+          </Col>
+</Row>
 
-                   	<Row> <Col>	<Button sm="6" onClick={()=>cart.addOneToCart(data.data[0])  } 
-		className="mx-2">Add to Cart</Button></Col></Row>
+	  <Row>
+          <Col>
+        <AssetFeatures
+  numBathrooms={data.data[0].assetNumberBathrooms}
+  numBedrooms={data.data[0].assetNumberBedrooms}
+  houseType={data.data[0].assetHouseType}
+/>
 
-		           </Col> 
-		       </Row>
-<hr />
-		    </Container>
-
-		</div>
-		</>
-  )
-}
+            <hr />
+            <p>Asset Owner Name: {data.data[0].assetOwnerName}</p>
+          </Col>
+</Row>
+	  </Col>
+</Row>
+      </Container>
+    </>
+  );
+};
 
 export default ProductPage;
-

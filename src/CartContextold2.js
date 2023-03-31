@@ -107,7 +107,7 @@ const addItemsToCart = (assetsToBuy, numberSharesToBuy = 1) => {
 
 
         const getProductQuantity = (id) => {
-              const quantity = cartProducts.find(product=>product.id===id)?.numberSharesToBuy;
+              const quantity = cartProducts.find(product=>product.id===id)?.quantity;
 
 		console.log("ddxx11====");
 		console.log(quantity);
@@ -118,7 +118,37 @@ const addItemsToCart = (assetsToBuy, numberSharesToBuy = 1) => {
 		return quantity;
 	}
 
-  
+        const addOneToCart = (props) => {
+		const id = props.dbKey;
+		const price = props.assetValue/props.assetNumberShares;
+		const title = props.assetAddress;
+		const merchantName = props.assetOwner;
+
+		console.log("props  xx====");
+		console.log(props);
+		console.log(id);
+		console.log("xx====");
+              const quantity = getProductQuantity(id);
+		console.log("ddxx====");
+		console.log(quantity);
+		console.log("ddxx====");
+
+		if (quantity === 0) {
+                     setCartProducts([...cartProducts, {id:id, seller: merchantName, title: title, quantity:1, price: price}])
+		} else {
+                     setCartProducts(
+                           cartProducts.map(product=>
+                                  product.id === id ? {...product, quantity:product.quantity +1 } 
+				   : product
+			   )
+		     )
+		}
+		console.log("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb====");
+		console.log("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb====");
+		console.log("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb====");
+		console.log(cartProducts);
+		console.log("====");
+	}
 
 const deleteFromCart=(id)=> {
 	console.log("cartProducts99999999999999999999999999999999999990000000000000000000000000000000000000000000000000000000000");
@@ -134,50 +164,22 @@ const deleteFromCart=(id)=> {
 
 }
 
- const addOneToCart = (assetsToBuy) => {
- 
-	   const { dbKey, assetOwnerName, assetAddress, assetValue, assetNumberShares } = assetsToBuy;
-  const id = dbKey;
-  const existingAssetPurchase= cartProducts.find((asset) => asset.id === id);
+const removeOneFromCart=(props)=> {
+	const id = props.dbKey;
+    const quantity = getProductQuantity(id);
 
-  const pricePerShare = assetValue / assetNumberShares;
-
-  const quantity = getProductQuantity(id);
-
-  if (quantity > 0) {
-    const updatedAssetPurchase = {
-      ...existingAssetPurchase,
-      numberSharesToBuy: existingAssetPurchase.numberSharesToBuy + 1,
-    };
-    setCartProducts(cartProducts.map((asset) => (asset.id === id ? updatedAssetPurchase : asset)));
-  } else {
-	  const newAssetsToBuy = {...assetsToBuy, id: dbKey, numberSharesToBuy: 1, pricePerShare:pricePerShare};
-	  console.log("new assets to buy --- ", newAssetsToBuy);
-    setCartProducts([...cartProducts, newAssetsToBuy]);
-  }
-	 
- 
-};
-
-const removeOneFromCart = (assetsToBuy) => {
-  	   const { dbKey, assetOwnerName, assetAddress, assetValue, assetNumberShares } = assetsToBuy;
-  const id = dbKey;
-  const existingAssetPurchase= cartProducts.find((asset) => asset.id === id);
-
-  const pricePerShare = assetValue / assetNumberShares;
-
-  const quantity = getProductQuantity(id);
-
-  if (quantity === 1) {
-    deleteFromCart(id);
-  } else {
-    const updatedAssetPurchase = {
-      ...existingAssetPurchase,
-      numberSharesToBuy: existingAssetPurchase.numberSharesToBuy - 1,
-    };
-    setCartProducts(cartProducts.map((asset) => (asset.id === id ? updatedAssetPurchase : asset)));  }
-};
-
+	if (quantity == 1) {
+		deleteFromCart(id);
+	} else {
+             
+                     setCartProducts(
+                           cartProducts.map(product=>
+                                  product.id === id ? {...product, quantity:product.quantity -1 } 
+				   : product
+			   )
+		     )
+	}
+}
 
 const getTotalCost=()=> {
    let totalCost = 0;

@@ -119,7 +119,7 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
                      <Route path="/orders/" element={<Orders />} />
                      <Route path="/admin/" element={<Admin />} />
                      <Route path="/about/" element={<About />} />
-                     <Route path="/cart/" element={<Cart />} />
+                     <Route path="/investments/" element={<Cart />} />
 	        </Routes>
           <div>
 	  </div>

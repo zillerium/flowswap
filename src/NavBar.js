@@ -14,7 +14,7 @@ const NavBar=() => {
 		<CustomLink to="/admin" >Admin</CustomLink>
 		<CustomLink to="/orders" >Orders</CustomLink>
 		<CustomLink to="/pay" >Pay</CustomLink>
-		<CustomLink to="/cart" >Cart</CustomLink>
+		<CustomLink to="/investments" >Investments</CustomLink>
 		<CustomLink to="/addproduct" >Add Product</CustomLink>
 		<CustomLink to="/about" >About</CustomLink>
 		{cart.walletStatus ? <WalletFill className="ml-4" color="#3FAF6D" /> :

@@ -23,7 +23,7 @@ const NavbarComponent=()=>{
 
 	}
 
-    const productsCount = cart.items.reduce((sum,product)=> sum+product.quantity, 0);
+    const productsCount = cart.items.reduce((sum,product)=> sum+product.numberSharesToBuy, 0);
 
 	console.log("carttttttttttttttttttttttttttttttttttttttttttttttttttt");
 	console.log(cart);
@@ -35,23 +35,22 @@ return (
         <Navbar expand="sm">
            <Navbar.Toggle />
            <Navbar.Collapse className="justify-content-end">
-                <Button onClick={handleShow}>Cart ({productsCount} items)</Button>
+                <Button onClick={handleShow}>Investment ({productsCount} shares)</Button>
 	    </Navbar.Collapse>
         </Navbar>
 	<Modal size="lg" show={show} onHide={handleClose} >
           <Modal.Header closeButton>
-              <Modal.Title>Shopping Cart</Modal.Title>
+              <Modal.Title>Investments</Modal.Title>
 	  </Modal.Header>
 	           <Modal.Body>
                                   <Table stripod="true"  bordered hover>
                                             <thead>
                                                  <tr>
-                                                      <th>Brand</th>
+                                                      <th>Asset</th>
                                                       <th>Seller</th>
-                                                      <th>Details</th>
-                                                      <th>Qty</th>
-                                                      <th>Price</th>
-                                                      <th>Subtot</th>
+                                                      <th>Number Shares</th>
+                                                      <th>Price Per Share</th>
+                                                      <th>Sub total</th>
                                                       <th>Action</th>
                                                  </tr>
                                             </thead>
@@ -60,11 +59,10 @@ return (
                                         <tbody>
 					      {cart.items.map((currentProduct, idx) => (
 						      <CartProduct key={idx}
-                                                      id = {currentProduct.id} 
-                                                      seller= {currentProduct.seller} 
-                                                      quantity = {currentProduct.quantity} 
-                                                      title = {currentProduct.title} 
-                                                      price = {currentProduct.price} 
+                                                      assetAddress= {currentProduct.assetAddress} 
+                                                      assetOwnerName= {currentProduct.assetOwnerName} 
+                                                      numberShares = {currentProduct.numberSharesToBuy} 
+                                                      pricePerShare = {currentProduct.pricePerShare} 
 						      />
 						        ))}
 
@@ -83,10 +81,10 @@ return (
 	<td></td>
 	<td></td>
 	<td></td>
-	<td>${(cart.getTotalCost()).toFixed(2)}</td>
+	<td>{(cart.getTotalCost()).toFixed(2)}</td>
 	<td>	<Link to="/pay">
 		               <Button disabled={(cart.items.length==0) ? true : false} 
-		               onClick={()=>handleClose()}>Buy</Button>
+		               onClick={()=>handleClose()}>Invest</Button>
 	</Link></td></tr>
 
 
