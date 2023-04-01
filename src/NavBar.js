@@ -11,14 +11,12 @@ const NavBar=() => {
   return <nav className="nav">
       <Link to="/" className="site-title"><img src={flowswap} className="img-fluid" /></Link>
       <ul>
-		<CustomLink to="/admin" >Admin</CustomLink>
-		<CustomLink to="/orders" >Orders</CustomLink>
-		<CustomLink to="/pay" >Pay</CustomLink>
-		<CustomLink to="/investments" >Investments</CustomLink>
-		<CustomLink to="/addproduct" >Add Product</CustomLink>
+		<CustomLink to="/admin" >Register</CustomLink>
+		<CustomLink to="/portfolio" >Portfolio</CustomLink>
+		<CustomLink to="/invest" >Invest</CustomLink>
+		<CustomLink to="/investments" >Investment</CustomLink>
+		<CustomLink to="/addasset" >Add Asset</CustomLink>
 		<CustomLink to="/about" >About</CustomLink>
-		{cart.walletStatus ? <WalletFill className="ml-4" color="#3FAF6D" /> :
-		<WalletFill className="ml-4" color="#E62729" color1="red" title="open"/>}
       </ul>
   </nav>
 

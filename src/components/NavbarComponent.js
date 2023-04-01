@@ -82,7 +82,7 @@ return (
 	<td></td>
 	<td></td>
 	<td>{(cart.getTotalCost()).toFixed(2)}</td>
-	<td>	<Link to="/pay">
+	<td>	<Link to="/invest">
 		               <Button disabled={(cart.items.length==0) ? true : false} 
 		               onClick={()=>handleClose()}>Invest</Button>
 	</Link></td></tr>

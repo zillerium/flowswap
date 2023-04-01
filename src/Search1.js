@@ -56,7 +56,7 @@ const Search1 =  () => {
                                  <td>    {value.assetAddress}  </td>
                                  <td>    {value.assetValue} {value.currency} </td>
 					                     <td>            <Link to={{
-                                             pathname:`/product/${value.dbKey}`,
+                                             pathname:`/asset/${value.dbKey}`,
                                                            state:{productId: value.dbKey, productPrice: value.partSalePrice}
                                                            }}>{value.assetAddress}</Link>
                                                            </td>

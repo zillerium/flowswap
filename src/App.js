@@ -113,10 +113,10 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
                      <Route index element={<Search1 />} />                    
                      <Route path="succcess" element={<Success />} />                    
                      <Route path="cancel" element={<Cancel />} />     
-                     <Route path="/product/:productId" element={<ProductPage />} />
-                     <Route path="/addproduct/" element={<AddProduct />} />
-                     <Route path="/pay/" element={<Pay />} />
-                     <Route path="/orders/" element={<Orders />} />
+                     <Route path="/asset/:productId" element={<ProductPage />} />
+                     <Route path="/addasset/" element={<AddProduct />} />
+                     <Route path="/invest/" element={<Pay />} />
+                     <Route path="/portfolio/" element={<Orders />} />
                      <Route path="/admin/" element={<Admin />} />
                      <Route path="/about/" element={<About />} />
                      <Route path="/investments/" element={<Cart />} />

@@ -35,7 +35,7 @@ const Cart = (props) => {
                         <td>
                           <Link
                             to={{
-                              pathname: `/product/${value.id}`,
+                              pathname: `/asset/${value.id}`,
                               state: { productId: value.id, productPrice: value.price },
                             }}
                           >
@@ -86,7 +86,7 @@ const Cart = (props) => {
                 <td></td>
                 <td>{cart.getTotalCost().toFixed(2)}</td>
                 <td>
-                  <Link to="/pay">
+                  <Link to="/invest">
                     <Button disabled={cart.items.length === 0}>Invest</Button>
                   </Link>
                 </td>
