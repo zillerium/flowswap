@@ -37,6 +37,7 @@ const [assetIncomeForQuantity, setAssetIncomeForQuantity] = useState(0);
   const [assetYieldForQuantity, setAssetYieldForQuantity] = useState(0);
   const [assetCostForQuantity, setAssetCostForQuantity] = useState(0);
   const [assetCostPerShare, setAssetCostPerShare] = useState(0);
+  const [maxQuantity, setMaxQuantity] = useState(1);
 
   const onQuantityChange = (quantity) => {
     setQuantity(quantity);
@@ -48,6 +49,7 @@ useEffect(()=> {
       setAssetYieldForQuantity(((data.data[0].assetIncome/data.data[0].assetNumberShares)*quantity));
       setAssetCostForQuantity((data.data[0].assetValue/data.data[0].assetNumberShares)*quantity.toFixed(2));
       setAssetCostPerShare((data.data[0].assetValue/data.data[0].assetNumberShares));
+	    setMaxQuantity((data.data[0].assetNumberShares));
     }
 
 }, [data, quantity]);
@@ -83,6 +85,7 @@ useEffect(()=> {
               quantity={quantity}
               onQuantityChange={onQuantityChange}
               onAddToCart={onAddToCart}
+              maxQuantity={maxQuantity}
             />
 
 
