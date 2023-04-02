@@ -30,7 +30,10 @@ function WalletInner(props) {
         const   [contractNumber, setContractNumber]=useState(0);
         const   [salesRelease, setSalesRelease] = useState(0);
         const   [disputeRelease, setDisputeRelease] = useState(0);
-        
+        const   [assetId, setAssetId] = useState(0);
+        const   [assetNumberSharesSold, setAssetNumberSharesSold] = useState(0);
+        const   [usdGbpRate, setUsdGbpRate] = useState(0);
+ 
 	const isConnectedWallet = props.isConnected;
         const payer = props.address;
         const cart = useContext(CartContext);
@@ -64,7 +67,11 @@ return (
                 salesRelease, setSalesRelease,
                 disputeRelease, setDisputeRelease,
                 contractNumber, setContractNumber,
-                allowanceAmount, setAllowanceAmount
+                allowanceAmount, setAllowanceAmount,
+              assetId, setAssetId,
+                 assetNumberSharesSold, setAssetNumberSharesSold,
+                 usdGbpRate, setUsdGbpRate
+
         }}>
         <div>
     	    <div className="row">

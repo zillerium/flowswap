@@ -42,6 +42,7 @@ const Search1 =  () => {
 					<Table stripod="true"  bordered hover>
                                             <thead>
                                                  <tr>
+                                                      <th>Asset ID</th>
                                                       <th>Asset Address</th>
                                                       <th>Valuation</th>
                                                       <th>Details</th>
@@ -53,15 +54,16 @@ const Search1 =  () => {
                         {searchedData.length>0 && searchedData.map((value, key) => {
                                 return (
 					<tr>
+                                 <td>    {value.assetId}  </td>
                                  <td>    {value.assetAddress}  </td>
-                                 <td>    {value.assetValue} {value.currency} </td>
+                                 <td>    {value.assetValue.toLocaleString()} {value.currency} </td>
 					                     <td>            <Link to={{
-                                             pathname:`/asset/${value.dbKey}`,
+                                             pathname:`/asset/${value.assetId}`,
                                                            state:{productId: value.dbKey, productPrice: value.partSalePrice}
                                                            }}>{value.assetAddress}</Link>
                                                            </td>
-                                 <td>    {value.assetNumberShares}  </td>
-					<td> {value.assetIncome}
+                                 <td>    {value.assetNumberShares.toLocaleString()}  </td>
+					<td> {value.assetIncome.toLocaleString()} {value.currency}
 						</td>
 					</tr>
 				)

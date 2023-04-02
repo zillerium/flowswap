@@ -37,6 +37,8 @@ const [assetIncomeForQuantity, setAssetIncomeForQuantity] = useState(0);
   const [assetYieldForQuantity, setAssetYieldForQuantity] = useState(0);
   const [assetCostForQuantity, setAssetCostForQuantity] = useState(0);
   const [assetCostPerShare, setAssetCostPerShare] = useState(0);
+  const [usdGbpRate, setUsdGbpRate] = useState(0);
+  const [sellerAddress, setSellerAddress] = useState(null);
   const [maxQuantity, setMaxQuantity] = useState(1);
 
   const onQuantityChange = (quantity) => {
@@ -49,7 +51,9 @@ useEffect(()=> {
       setAssetYieldForQuantity(((data.data[0].assetIncome/data.data[0].assetNumberShares)*quantity));
       setAssetCostForQuantity((data.data[0].assetValue/data.data[0].assetNumberShares)*quantity.toFixed(2));
       setAssetCostPerShare((data.data[0].assetValue/data.data[0].assetNumberShares));
-	    setMaxQuantity((data.data[0].assetNumberShares));
+      setMaxQuantity((data.data[0].assetNumberShares));
+      setUsdGbpRate((data.data[0].usdGbpRate));
+      setSellerAddress((data.data[0].sellerAddress));
     }
 
 }, [data, quantity]);
@@ -91,24 +95,27 @@ useEffect(()=> {
 
               </Col>
 	  </Row>
-	  <Row className="my-4"><Col><h4>For {quantity} Shares </h4></Col></Row>
+	  <Row className="my-4"><Col><h4>For {quantity} Shares USD Rate {usdGbpRate} Fixed </h4></Col></Row>
       <Row className="my-4" >
         <Col xs={12} sm={12} md={6} lg={4} xl={4}>
           <DataBox
             title="Income"
             data={`${assetIncomeForQuantity.toFixed(2)} GBP`}
+            datausd={`${(assetIncomeForQuantity*usdGbpRate).toFixed(2)} USD`}
           />
 	  </Col>
         <Col xs={12} sm={12} md={6} lg={4} xl={4}>
           <DataBox
             title="Cost"
             data={`${assetCostForQuantity.toFixed(2)} GBP`}
+            datausd={`${(assetCostForQuantity*usdGbpRate).toFixed(2)} USD`}
           />
 	  </Col>
         <Col xs={12} sm={12} md={6} lg={4} xl={4}>
           <DataBox
             title="Cost Per Share"
             data={`${assetCostPerShare.toFixed(2)} GBP`}
+            datausd={`${(assetCostPerShare*usdGbpRate).toFixed(2)} USD`}
           />
         </Col>
       </Row>
@@ -122,6 +129,7 @@ useEffect(()=> {
               assetYield={data.data[0].assetYield}
               assetRiskRating={data.data[0].assetRiskRating}
               assetNumberShares={data.data[0].assetNumberShares}
+              usdGbpRate={data.data[0].usdGbpRate}
             />
            </Col>
 	  </Row>
@@ -146,6 +154,9 @@ useEffect(()=> {
 
             <hr />
             <p>Asset Owner Name: {data.data[0].assetOwnerName}</p>
+            <p>Seller: {sellerAddress}</p>
+            <p>USD GBP Rate: {usdGbpRate}</p>
+            <p>** All investments are made in USD and at a fixed exchange rate for 12 months ** </p>
            </Col>
         </Row>
 

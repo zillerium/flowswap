@@ -12,18 +12,33 @@ const CartProduct=(props)=> {
 //	const productData = getProductData(id);
 
 	return (
-
-		                                        <tr>
-                                                  <td>{props.assetAddress}</td>
-                                                  <td>{props.assetOwnerName}</td>
-                                                  <td>{props.numberShares}</td>
-                                                  <td>{props.pricePerShare}</td>
-                                                  <td>{props.pricePerShare*props.numberShares}</td>
-                      <td> <Button size="sm" onClick={() => cart.deleteFromCart(props.assetAddress)}>X</Button></td>
-                                        </tr>
-
+		<tr>
+			<td>{props.assetAddress}</td>
+			<td>{props.assetOwnerName}</td>
+			<td>{props.numberShares}</td>
+			<td>
+				{props.pricePerShare.toLocaleString('en-US', {
+					style: 'currency',
+					currency: 'GBP'
+				})} ({(props.pricePerShare*props.usdGbpRate).toLocaleString('en-US', {
+					style: 'currency',
+					currency: 'USD'
+				})})
+			</td>
+			<td>
+				{(props.pricePerShare*props.numberShares).toLocaleString('en-US', {
+					style: 'currency',
+					currency: 'GBP'
+				})} ({(props.pricePerShare*props.numberShares*props.usdGbpRate).toLocaleString('en-US', {
+					style: 'currency',
+					currency: 'USD'
+				})})
+			</td>
+			<td>
+				<Button size="sm" onClick={() => cart.deleteFromCart(props.assetAddress)}>X</Button>
+			</td>
+		</tr>
 	)
-
 }
 
 export default CartProduct;

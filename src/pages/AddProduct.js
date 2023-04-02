@@ -7,9 +7,11 @@ import CartProvider from '../CartContext.js'
 
 const AddProduct = () => {
 
+      const maxint256 = 10000000000000;
+        const ranNumber = Math.floor(Math.random() * maxint256);
 	const [password, setPassword]=useState("");
 	const [correct, setCorrect]=useState(false);
- const [houseId, setHouseId] = useState(null);
+ const [assetId, setAssetId] = useState(ranNumber);
 const [dbKey, setDbKey] = useState(null);
 const [assetOwnerName, setAssetOwnerName] = useState(null);
 const [assetAddress, setAssetAddress] = useState(null);
@@ -29,6 +31,10 @@ const [assetHouseType, setAssetHouseType] = useState(null);
 const [hasDoubleGlazing, setHasDoubleGlazing] = useState(false);
 const [assetRiskRating, setAssetRiskRating] = useState(null);
 const [assetPreferredNotary, setAssetPreferredNotary] = useState(null);
+	const [usdGbpRate, setUsdGbpRate] = useState(null);
+  const [assetNumberSharesSold, setAssetNumberSharesSold] = useState(null);
+  const [sellerAddress, setSellerAddress] = useState(null);
+
 
 
 
@@ -184,9 +190,35 @@ onChange={(e) => setAssetPreferredNotary(e.target.value)} />
       </div>
 	   {assetPreferredNotary}
 	   {currency}
+
+<div>
+        <input
+          type="number"
+          placeholder="USD-GBP Rate"
+          value={usdGbpRate}
+          onChange={(e) => setUsdGbpRate(e.target.value)}
+        />
+      </div>
+      <div>
+        <input
+          type="number"
+          placeholder="Number of Shares Sold"
+          value={assetNumberSharesSold}
+          onChange={(e) => setAssetNumberSharesSold(e.target.value)}
+        />
+      </div>
+ <div>
+        <input
+          type="text"
+          placeholder="Seller Address"
+          value={sellerAddress}
+          onChange={(e) => setSellerAddress(e.target.value)}
+        />
+      </div>
+
       <div>
         <Button disabled={!correct} onClick={() => mutate({
-          houseId: houseId,
+          assetId: assetId,
           dbKey: dbKey,
           assetOwnerName: assetOwnerName,
           assetAddress: assetAddress,
@@ -206,6 +238,9 @@ onChange={(e) => setAssetPreferredNotary(e.target.value)} />
           assetRiskRating: assetRiskRating,
           assetPreferredNotary: assetPreferredNotary,
           currency: currency,
+		              usdGbpRate: usdGbpRate,
+              assetNumberSharesSold: assetNumberSharesSold,
+              sellerAddress: sellerAddress,
         })}>
           Add Property
         </Button>

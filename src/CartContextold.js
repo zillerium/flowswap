@@ -147,60 +147,49 @@ const deleteFromCart=(id)=> {
 
 }
 
-const addOneToCart = (assetsToBuy) => {
-  const { assetId, dbKey, assetOwnerName, assetAddress, assetValue, assetNumberShares, usdGbpRate, assetNumberSharesSold, sellerAddress, assetBlockchainAddress } = assetsToBuy;
-  const id = assetId;
-  const existingAssetPurchase = cartProducts.find((asset) => asset.id === id);
+ const addOneToCart = (assetsToBuy) => {
+ 
+	   const { dbKey, assetOwnerName, assetAddress, assetValue, assetNumberShares } = assetsToBuy;
+  const id = dbKey;
+  const existingAssetPurchase= cartProducts.find((asset) => asset.id === id);
 
   const pricePerShare = assetValue / assetNumberShares;
-  const priceUsdPerShare = (assetValue*usdGbpRate) / assetNumberShares;
 
-  if (existingAssetPurchase) {
+  const quantity = getProductQuantity(id);
+
+  if (quantity > 0) {
     const updatedAssetPurchase = {
       ...existingAssetPurchase,
       numberSharesToBuy: existingAssetPurchase.numberSharesToBuy + 1,
     };
     setCartProducts(cartProducts.map((asset) => (asset.id === id ? updatedAssetPurchase : asset)));
   } else {
-    const newAssetsToBuy = {
-      ...assetsToBuy,
-      id: dbKey,
-      numberSharesToBuy: 1,
-      pricePerShare: pricePerShare,
-      priceUsdPerShare: priceUsdPerShare,
-      usdGbpRate: usdGbpRate,
-      assetNumberSharesSold: assetNumberSharesSold,
-      sellerAddress: sellerAddress,
-      assetBlockchainAddress: assetBlockchainAddress
-    };
-    console.log("new assets to buy --- ", newAssetsToBuy);
+	  const newAssetsToBuy = {...assetsToBuy, id: dbKey, numberSharesToBuy: 1, pricePerShare:pricePerShare};
+	  console.log("new assets to buy --- ", newAssetsToBuy);
     setCartProducts([...cartProducts, newAssetsToBuy]);
   }
+	 
+ 
 };
 
 const removeOneFromCart = (assetsToBuy) => {
-  const { assetId } = assetsToBuy;
-  const id = assetId;
-  const existingAssetPurchase = cartProducts.find((asset) => asset.id === id);
+  	   const { dbKey, assetOwnerName, assetAddress, assetValue, assetNumberShares } = assetsToBuy;
+  const id = dbKey;
+  const existingAssetPurchase= cartProducts.find((asset) => asset.id === id);
 
-  if (!existingAssetPurchase) {
-    // Item not found in cart, do nothing
-    return;
-  }
+  const pricePerShare = assetValue / assetNumberShares;
 
-  const updatedAssetPurchase = {
-    ...existingAssetPurchase,
-    numberSharesToBuy: existingAssetPurchase.numberSharesToBuy - 1,
-  };
+  const quantity = getProductQuantity(id);
 
-  if (updatedAssetPurchase.numberSharesToBuy <= 0) {
-    // Remove item from cart if numberSharesToBuy becomes 0 or negative
+  if (quantity === 1) {
     deleteFromCart(id);
   } else {
-    setCartProducts(cartProducts.map((asset) => (asset.id === id ? updatedAssetPurchase : asset)));
-  }
+    const updatedAssetPurchase = {
+      ...existingAssetPurchase,
+      numberSharesToBuy: existingAssetPurchase.numberSharesToBuy - 1,
+    };
+    setCartProducts(cartProducts.map((asset) => (asset.id === id ? updatedAssetPurchase : asset)));  }
 };
-
 
 
 const getTotalCost=()=> {
@@ -210,7 +199,7 @@ const getTotalCost=()=> {
 //		totalCost+=(productData.partPrice*cartItem.quantity);
 //	})
 	cartProducts.map((cartItem)=> {
-                      totalCost+=(cartItem.pricePerShare*cartItem.usdGbpRate*cartItem.numberSharesToBuy);
+                      totalCost+=(cartItem.pricePerShare*cartItem.numberSharesToBuy);
 	})
 	return totalCost;
 }

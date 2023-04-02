@@ -11,34 +11,29 @@ const AssetFinancials = ({
 }) => {
   return (
     <div className="border border-dark p-3">
- 
-<Row className="my-4">
-  <Col md={6} className="text-left">
-    <div className="font-weight-bold mb-1">Asset Value</div>
-  </Col>
-  <Col md={3} className="text-left">
-    <div className="mb-1">{assetValue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} GBP</div>
-  </Col>
-  <Col md={3} className="text-left">
-    <div className="mb-1">{(assetValue * usdGbpRate).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} USD</div>
-  </Col>
-</Row>
-
-
-
+      <Row className="my-4">
+        <Col md={6} className="text-left">
+          <div className="font-weight-bold mb-1">Asset Value</div>
+        </Col>
+        <Col md={3} className="text-left">
+          <div className="mb-1">{assetValue.toFixed()} GBP</div>
+        </Col>
+        <Col md={3} className="text-left">
+          <div className="mb-1">{(assetValue*usdGbpRate).toFixed()} USD</div>
+        </Col>
+      </Row>
       <div className="border-bottom"></div>
- <Row className="my-4">
-  <Col md={6} className="text-left">
-    <div className="font-weight-bold mb-1">Income</div>
-  </Col>
-  <Col md={3} className="text-left">
-    <div className="mb-1">{assetIncome.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} GBP</div>
-  </Col>
-  <Col md={3} className="text-left">
-    <div className="mb-1">{(assetIncome * usdGbpRate).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} USD</div>
-  </Col>
-</Row>
-
+      <Row className="my-4">
+        <Col md={6} className="text-left">
+          <div className="font-weight-bold mb-1">Income</div>
+        </Col>
+        <Col md={3} className="text-left">
+          <div className="mb-1">{assetIncome.toFixed(2)} GBP</div>
+        </Col>
+        <Col md={3} className="text-left">
+          <div className="mb-1">{(assetIncome*usdGbpRate).toFixed(2)} GBP</div>
+        </Col>
+      </Row>
       <div className="border-bottom"></div>
       <Row className="my-4">
         <Col md={6} className="text-left">
