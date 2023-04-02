@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Container, Button} from 'react-bootstrap';
 import CartProvider from '../CartContext.js'
 
-const AddProduct = () => {
+const AddApiProduct = () => {
 
       const maxint256 = 10000000000000;
         const ranNumber = Math.floor(Math.random() * maxint256);
@@ -251,4 +251,4 @@ onChange={(e) => setAssetPreferredNotary(e.target.value)} />
 }
  
 
-export default AddProduct;
+export default AddApiProduct;

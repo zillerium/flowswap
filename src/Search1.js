@@ -4,7 +4,7 @@ import {Link, Routes, Route, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {CartContext} from './CartContext';
 import {Table, Card, Button, Form, Row, Col} from 'react-bootstrap';
-import {ProductPage} from './pages/ProductPage';
+import {AssetShowPage} from './pages/AssetShowPage';
 import {ArrowRight,Search} from 'react-bootstrap-icons';
 
 // import {productsArray} from '../productsStore';

@@ -4,15 +4,15 @@ import axios from "axios";
 import { useQuery } from "react-query";
 import { ListGroup, Badge, Form, Container, Button, Row, Col } from "react-bootstrap";
 
-import AssetCheckboxList from "../components/AssetCheckboxList";
-import AssetFeatures from "../components/AssetFeatures";
-import AssetFinancials from "../components/AssetFinancials";
-import AssetImages from "../components/AssetImages";
-import DataBox from "../components/DataBox";
-import ManageInvestQty from "../components/ManageInvestQty";
+import AssetCheckboxList from "./AssetCheckboxList";
+import AssetFeatures from "./AssetFeatures";
+import AssetFinancials from "./AssetFinancials";
+import AssetImages from "./AssetImages";
+import DataBox from "./DataBox";
+import ManageInvestQty from "./ManageInvestQty";
 import { CartContext } from "../CartContext";
 
-const ProductPage = () => {
+const AssetShow = () => {
 
   const { productId } = useParams();
   const cart = useContext(CartContext);
@@ -167,4 +167,4 @@ useEffect(()=> {
   );
 };
 
-export default ProductPage;
+export default AssetShow;
