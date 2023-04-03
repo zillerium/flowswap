@@ -37,7 +37,8 @@ function AddAsset() {
             console.log(data)
 
             if (isSuccess) {
-                setAddAsset(true);
+//                setAddAsset(true);
+		  //blockchainCall(true);
             }
     const addAssetFunc = async () => {
               console.log("------ pay now--");

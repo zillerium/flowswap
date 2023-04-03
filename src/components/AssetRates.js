@@ -13,11 +13,13 @@ function AssetRates() {
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div style={{ borderRadius: "10px", border: "1px solid lightgrey", flex: "1", marginRight: "5px" }}>
           <input type="number" placeholder="USD-GBP Rate" value={usdGbpRate} 
-            onChange={(e) => setUsdGbpRate(e.target.value)} style={{ border: "none", width: "100%", padding: "5px" }} />
+            onChange={(e) => setUsdGbpRate(e.target.value)} style={{ border: "none", width: "100%", padding: "5px" }} 
+            title={'USD GBP Rate'} />
         </div>
         <div style={{ borderRadius: "10px", border: "1px solid lightgrey", flex: "1", marginLeft: "5px" }}>
           <input type="number" placeholder="Number of Shares Sold" value={assetNumberSharesSold} 
-            onChange={(e) => setAssetNumberSharesSold(e.target.value)} style={{ border: "none", width: "100%", padding: "5px" }} />
+            onChange={(e) => setAssetNumberSharesSold(e.target.value)} style={{ border: "none", width: "100%", padding: "5px" }} 
+            title={'Number Shares Sold'} />
         </div>
       </div>
     </div>

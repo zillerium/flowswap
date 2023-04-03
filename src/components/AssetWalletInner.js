@@ -26,29 +26,29 @@ function AssetWalletInner(props) {
 	const [password, setPassword]=useState("");
 	const [correct, setCorrect]=useState(false);
  const [assetId, setAssetId] = useState(ranNumber);
-const [dbKey, setDbKey] = useState(null);
-const [assetOwnerName, setAssetOwnerName] = useState(null);
-const [assetAddress, setAssetAddress] = useState(null);
-const [assetValue, setAssetValue] = useState(null);
-const [assetNumberShares, setAssetNumberShares] = useState(null);
+const [dbKey, setDbKey] = useState('');
+const [assetOwnerName, setAssetOwnerName] = useState('');
+const [assetAddress, setAssetAddress] = useState('');
+const [assetValue, setAssetValue] = useState(0);
+const [assetNumberShares, setAssetNumberShares] = useState(10000);
 const [hasTenant, setHasTenant] = useState(false);
 const [hasGarden, setHasGarden] = useState(false);
 const [hasParking, setHasParking] = useState(false);
-const [assetImageUrl, setAssetImageUrl] = useState(null);
+const [assetImageUrl, setAssetImageUrl] = useState('https://i.pinimg.com/originals/c7/69/91/c7699158f7213d6b38a7c55b81c1af07.jpg');
 const [currency, setCurrency] = useState('GBP');
-const [assetUrl, setAssetUrl] = useState(null);
-const [assetIncome, setAssetIncome] = useState(null);
-const [assetYield, setAssetYield] = useState(null);
-const [assetNumberBathrooms, setAssetNumberBathrooms] = useState(null);
-const [assetNumberBedrooms, setAssetNumberBedrooms] = useState(null);
-const [assetHouseType, setAssetHouseType] = useState(null);
+const [assetUrl, setAssetUrl] = useState('tba');
+const [assetIncome, setAssetIncome] = useState(0);
+const [assetYield, setAssetYield] = useState(780);
+const [assetNumberBathrooms, setAssetNumberBathrooms] = useState(1);
+const [assetNumberBedrooms, setAssetNumberBedrooms] = useState(2);
+const [assetHouseType, setAssetHouseType] = useState('Terraced');
 const [hasDoubleGlazing, setHasDoubleGlazing] = useState(false);
-const [assetRiskRating, setAssetRiskRating] = useState(null);
-const [assetPreferredNotary, setAssetPreferredNotary] = useState(null);
-	const [usdGbpRate, setUsdGbpRate] = useState(null);
-  const [assetNumberSharesSold, setAssetNumberSharesSold] = useState(null);
-  const [sellerAddress, setSellerAddress] = useState(null);
-  const [addAsset, setAddAsset] = useState(null);
+const [assetRiskRating, setAssetRiskRating] = useState(1);
+const [assetPreferredNotary, setAssetPreferredNotary] = useState('0x846799Ed461091F982d52FB2f7812913c8E90B01');
+	const [usdGbpRate, setUsdGbpRate] = useState(1.23);
+  const [assetNumberSharesSold, setAssetNumberSharesSold] = useState(0);
+  const [sellerAddress, setSellerAddress] = useState('0x846799Ed461091F982d52FB2f7812913c8E90B01');
+  const [addAsset, setAddAsset] = useState(false);
 
 	const isConnectedWallet = props.isConnected;
         const payer = props.address;
@@ -98,6 +98,7 @@ return (
     hasDoubleGlazing, setHasDoubleGlazing,
     assetRiskRating, setAssetRiskRating,
     assetPreferredNotary, setAssetPreferredNotary,
+    sellerAddress, setSellerAddress,
 }}>
 
 

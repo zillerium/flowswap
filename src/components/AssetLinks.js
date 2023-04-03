@@ -13,11 +13,13 @@ function AssetLinks() {
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div style={{ borderRadius: "10px", border: "1px solid lightgrey", flex: "1", marginRight: "5px" }}>
           <input type="text" placeholder="Asset Image URL" value={assetImageUrl} 
-            onChange={(e) => setAssetImageUrl(e.target.value)} style={{ border: "none", width: "100%", padding: "5px" }} />
+            onChange={(e) => setAssetImageUrl(e.target.value)} style={{ border: "none", width: "100%", padding: "5px" }} 
+            title={'image url'} />
         </div>
         <div style={{ borderRadius: "10px", border: "1px solid lightgrey", flex: "1", marginLeft: "5px" }}>
           <input type="text" placeholder="Asset URL" value={assetUrl} 
-            onChange={(e) => setAssetUrl(e.target.value)} style={{ border: "none", width: "100%", padding: "5px" }} />
+            onChange={(e) => setAssetUrl(e.target.value)} style={{ border: "none", width: "100%", padding: "5px" }} 
+            title={'asset url'} />
         </div>
       </div>
     </div>

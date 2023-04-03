@@ -27,7 +27,9 @@ function AddAssetMgr() {
                 paySeller, setPaySeller,
                 } = useContext(ContractContext)
 
-
+console.log("seller address = llllllllllllllllllllllll", sellerAddress);
+console.log("seller address = llllllllllllllllllllllll", sellerAddress);
+console.log("seller address = llllllllllllllllllllllll", sellerAddress);
 
 
 const [search,setSearch] = useState("");
@@ -67,7 +69,18 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
 	if (error) return <h1>{error.message}</h1>
 	if (isLoading) return <h1>Loading</h1>
 		//console.log(data);
+/*
+ *
+ *
+ *
+ *      <AssetOwner />
+      <AssetCheckBoxes />
+       <AssetDetails />
+      <AssetLinks />
+<AssetRates />
+<AssetRisk />
 
+ */
     return (
         <>
   <header>
@@ -78,7 +91,7 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
         <Button onClick={checkPassword}>Enable Page</Button>
       </div>
 
-      <AssetOwner />
+       <AssetOwner />
       <AssetCheckBoxes />
        <AssetDetails />
       <AssetLinks />
@@ -113,7 +126,7 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
           Add DB Asset
         </Button>
       </div>
-	    <div>{<AddAssetCall />}</div>
+	    <div>{<AddAssetCall  />}</div>
     </header>
 
         </>
