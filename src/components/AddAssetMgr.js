@@ -13,6 +13,7 @@ import AssetLinks from './AssetLinks';
 import AssetRates from './AssetRates';
 import AssetRisk from './AssetRisk';
 import AddAssetCall from './AddAssetCall';
+import AddPdf from './AddPdf';
 
 import {Button} from 'react-bootstrap';
 
@@ -80,6 +81,7 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
 <AssetRates />
 <AssetRisk />
 
+	    <div>{<AddAssetCall  />}</div>
  */
     return (
         <>
@@ -126,7 +128,9 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
           Add DB Asset
         </Button>
       </div>
-	    <div>{<AddAssetCall  />}</div>
+	    <div>
+	    {<AddPdf />}
+	    </div>
     </header>
 
         </>
