@@ -78,7 +78,7 @@ useEffect(()=> {
         </Row>
         <Row >
           <Col xs={12} sm={12} md={5} lg={5} xl={5}>
-            <AssetImages imageUrl={data.data[0].assetImageUrl} alt={data.data[0].assetAddress} />
+            <AssetImages imageUrl={`https://ipfs.io/ipfs/${data.data[0].ipfsImageHash}`} alt={data.data[0].assetAddress} />
           </Col>
           <Col >
              <Row >
@@ -154,6 +154,7 @@ useEffect(()=> {
 
             <hr />
             <p>Asset Owner Name: {data.data[0].assetOwnerName}</p>
+	  <p><a href={`http://ipfs.io/ipfs/${data.data[0].ipfsHash}`} target="_blank">Asset Prospectus</a></p>
             <p>Seller: {sellerAddress}</p>
             <p>USD GBP Rate: {usdGbpRate}</p>
             <p>** All investments are made in USD and at a fixed exchange rate for 12 months ** </p>

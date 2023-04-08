@@ -135,19 +135,25 @@ function generatePDF() {
   return (
     <div>
       <div ref={screenshotRef}>
+	  <img src='http://ipfs.io/ipfs/QmSj5Yd6p377rYJWSoGnq29wehFFKkLZGS7PynxKzaLQSB' className="img-fluid" alt="menu"/>
+      </div>
+      <div ref={screenshotRef}>
         <img src={assetImageUrl} alt="Asset Image" className="img-fluid" />
       </div>
-	            <div>Load Image </div>
+	            <div><h2>Create PDF Locally</h2> </div>
 
       <div>
+	  <p>save asset image locally first and then upload - this creates the pdf from the image and form data</p>
+	  <label for="image-btn">Choose the asset image: </label>
         <input
           type="file"
           name="photo"
+	  id="image-btn"
           onChange={onChangephoto}
           accept="image/png, image/png, image/jpeg, image/jpg"
         />
         <Button variant="primary" onClick={generatePDF}>
-          Save as PDF
+          Create PDF Locally using Form and Image
         </Button>
       </div>
     </div>

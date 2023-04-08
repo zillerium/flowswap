@@ -17,6 +17,7 @@ import Store from './pages/Store'
 import About from './pages/About'
 import AssetShowPage from './pages/AssetShowPage'
 import AddApiProduct from './pages/AddApiProduct'
+import ListAssets from './pages/ListAssets'
 import Pay from './pages/Pay'
 import Success from './pages/Success'
 import CartProvider from './CartContext.js'
@@ -115,6 +116,7 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
                      <Route path="cancel" element={<Cancel />} />     
                      <Route path="/asset/:productId" element={<AssetShowPage />} />
                      <Route path="/addasset/" element={<AddApiProduct />} />
+                     <Route path="/listassets/" element={<ListAssets />} />
                      <Route path="/invest/" element={<Pay />} />
                      <Route path="/portfolio/" element={<Orders />} />
                      <Route path="/admin/" element={<Admin />} />

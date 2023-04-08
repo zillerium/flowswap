@@ -15,6 +15,7 @@ import AssetRisk from './AssetRisk';
 import AddAssetCall from './AddAssetCall';
 import AddPdf from './AddPdf';
 import LoadIpfs from './LoadIpfs';
+import LoadImageIpfs from './LoadImageIpfs';
 
 import {Button} from 'react-bootstrap';
 import {IpfsContext} from './IpfsContext';
@@ -31,11 +32,10 @@ function AddAssetMgr() {
                 } = useContext(ContractContext)
 
 console.log("seller address = llllllllllllllllllllllll", sellerAddress);
-console.log("seller address = llllllllllllllllllllllll", sellerAddress);
-console.log("seller address = llllllllllllllllllllllll", sellerAddress);
 
 
 const [ipfsHash,setIpfsHash] = useState("0x");
+const [ipfsImageHash,setIpfsImageHash] = useState("0x");
 const [search,setSearch] = useState("");
 	const {isLoading, error, data, isFetching, refetch} = useQuery('dogs',
 		() => axios ('https://random.dog/woof.json'),
@@ -65,7 +65,10 @@ const {mutate,isSuccess,  isError} = useMutation(PostData, {
 	}
 })
 const ImageDisplay = () => {
-return ( data ? <img src={data.data.url}/> : <p></p>);
+//return ( data ? <img src={data.data.url}/> : <p></p>);
+}
+const IpfsImageDisplay = () => {
+return ( data ? <img src='http://ipfs.io/ipfs/QmSj5Yd6p377rYJWSoGnq29wehFFKkLZGS7PynxKzaLQSB'/> : <p></p>);
 }
  console.log("render");
  console.log(error);
@@ -80,12 +83,12 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
       <p></p>
 
        <AssetOwner />
-      <AssetCheckBoxes />
+       <AssetCheckBoxes />
        <AssetDetails />
-      <AssetLinks />
-<AssetRates />
-<AssetRisk />
-	    <IpfsContext.Provider value={{ipfsHash, setIpfsHash }} >
+       <AssetLinks />
+       <AssetRates />
+       <AssetRisk />
+       <IpfsContext.Provider value={{ipfsHash, setIpfsHash, ipfsImageHash, setIpfsImageHash }} >
 	  
 	   
             
@@ -94,6 +97,9 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
   <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
     <div style={{ borderRadius: "10px", border: "1px solid lightgrey", padding: "10px" }}>
       <AddPdf />
+    </div>
+    <div style={{ borderRadius: "10px", border: "1px solid lightgrey", padding: "10px" }}>
+      <LoadImageIpfs />
     </div>
     <div style={{ borderRadius: "10px", border: "1px solid lightgrey", padding: "10px" }}>
       <LoadIpfs />
@@ -114,7 +120,7 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
           assetImageUrl: assetImageUrl,
           assetUrl: assetUrl,
           assetIncome: assetIncome,
-          assetYield: assetYield,
+          assetYield: assetYield*100,
           assetNumberBathrooms: assetNumberBathrooms,
           assetNumberBedrooms: assetNumberBedrooms,
           assetHouseType: assetHouseType,
@@ -126,12 +132,14 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
               assetNumberSharesSold: assetNumberSharesSold,
               sellerAddress: sellerAddress,
               ipfsHash: ipfsHash,
+              ipfsImageHash: ipfsImageHash,
       })}>
         Add DB Asset
       </Button> 
     </div>
     <div style={{ borderRadius: "10px", border: "1px solid lightgrey", padding: "10px" }}>
-      <AddAssetCall />
+      <p>Create NFT for Investment Prospectus</p>
+	    <AddAssetCall />
     </div>
   </div>
 </div>

@@ -39,11 +39,13 @@ function LoadIpfs() {
 
   return (
     <div>
-      <div>Load PDF to Ipfs</div>
+      <div><h2>Load PDF to Ipfs</h2></div>
       <div>
-        <input type="file" name="pdfFile" onChange={onChangePdf} accept=".pdf" />
+	     <p>save asset pdf locally first and then upload</p>
+          <label for="image-btn">Choose the pdf for the asset: </label>
+        <input type="file" id="image-btn" name="pdfFile" onChange={onChangePdf} accept=".pdf" />
         <Button variant="primary" onClick={loadIpfsPdf}>
-          Load Pdf to Ipfs
+          Create Asset Pdf to Ipfs
         </Button>
       </div>
       {ipfsHash && (

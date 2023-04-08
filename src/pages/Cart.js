@@ -21,7 +21,7 @@ console.log("cart items mmmmmmmmmmmm= ", cart.items);
   return (
     <>
       <div>
-        <h1>Investments </h1>
+        <h1>Trades</h1>
       </div>
       <div>
         <div>
@@ -76,7 +76,7 @@ console.log("cart items mmmmmmmmmmmm= ", cart.items);
                 <td>{cart.getTotalCost().toFixed(2)} USD</td>
                 <td>
                   <Link to="/invest">
-                    <Button disabled={cart.items.length === 0}>Invest</Button>
+                    <Button disabled={cart.items.length === 0}>Settle</Button>
                   </Link>
                 </td>
               </tr>

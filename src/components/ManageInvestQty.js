@@ -32,7 +32,7 @@ const ManageInvestQty = ({ quantity, onQuantityChange, onAddToCart, maxQuantity 
       onAddToCart();
     }}>
       <Form.Group controlId="quantity" className="d-flex align-items-center">
-        <Form.Label column sm="5">Number Shares to Buy:</Form.Label>
+        <Form.Label column sm="5">Number Shares to Trade:</Form.Label>
         <Col sm="7" className="d-flex align-items-center">
           <Button variant="outline-primary" size="sm" style={{ height: "100%" }} onClick={handleDecrease}>-</Button>
           <Form.Control
@@ -45,7 +45,7 @@ const ManageInvestQty = ({ quantity, onQuantityChange, onAddToCart, maxQuantity 
           />
           <Button variant="outline-primary" size="sm" style={{ height: "100%" }} onClick={handleIncrease} disabled={quantity >= maxQuantity}>+</Button>
           <Button type="submit" variant="success" style={{ marginLeft: "10px", height: "100%" }}>
-            Invest
+            Trade
           </Button>
         </Col>
       </Form.Group>

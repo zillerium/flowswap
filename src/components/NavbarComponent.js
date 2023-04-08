@@ -35,12 +35,12 @@ return (
         <Navbar expand="sm">
            <Navbar.Toggle />
            <Navbar.Collapse className="justify-content-end">
-                <Button onClick={handleShow}>Investment ({productsCount} shares)</Button>
+                <Button onClick={handleShow}>Trades ({productsCount} shares)</Button>
 	    </Navbar.Collapse>
         </Navbar>
 	<Modal size="lg" show={show} onHide={handleClose} >
           <Modal.Header closeButton>
-              <Modal.Title>Investments</Modal.Title>
+              <Modal.Title>Trades</Modal.Title>
 	  </Modal.Header>
 	           <Modal.Body>
                                   <Table stripod="true"  bordered hover>
@@ -88,7 +88,7 @@ return (
   </td>
 	<td>	<Link to="/invest">
 		               <Button disabled={(cart.items.length==0) ? true : false} 
-		               onClick={()=>handleClose()}>Invest</Button>
+		               onClick={()=>handleClose()}>Settle</Button>
 	</Link></td></tr>
 
 
