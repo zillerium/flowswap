@@ -17,7 +17,7 @@ import AssetListBytes32 from './AssetListBytes32';
 function ListAssetInner(props) {
         const   [contractNftAddress, setContractNftAddress] = useState(process.env.REACT_APP_NFT_CONTRACT_ADDR);
         const   [assetList, setAssetList] = useState([]);
-        const   [assetDetails, setAssetDetails] = useState([{}]);
+        const   [assetDetails, setAssetDetails] = useState([]);
 
 	const isConnectedWallet = props.isConnected;
         const payer = props.address;
