@@ -1,8 +1,13 @@
 import {useContext, useState, useEffect} from 'react'
 import {CartContext} from '../CartContext'
 import {ContractContext} from './ContractContext'
+import bs58 from 'bs58';
+import Web3 from 'web3';
+
 
 function GetSellers() {
+
+	 const web3 = new Web3();
 
     const  {
                 sellerAddress, setSellerAddress,
@@ -12,6 +17,8 @@ function GetSellers() {
                 salesRelease, setSalesRelease,
                 disputeRelease, setDisputeRelease,
 	           assetId, setAssetId,
+	           ipfsHash, setIpfsHash,
+	           ipfsHashBytes32, setIpfsHashBytes32,
                  assetNumberSharesSold, setAssetNumberSharesSold,
                  usdGbpRate, setUsdGbpRate
 
@@ -19,12 +26,31 @@ function GetSellers() {
     const cart = useContext(CartContext);
     const items = cart.items;
     console.log("----items --", items);
+    const ipfsHashBytes32func = (ipfsHash) => {
+        const bytes = bs58.decode(ipfsHash).slice(2);
+        return web3.utils.bytesToHex(bytes);
+    }
+
  useEffect(() => {	
   if (items) {
     let asset = items[0]; // assuming only one item in the array
-    setAssetId(asset.assetId);
-    setAssetNumberSharesSold(asset.assetNumberSharesSold);
-    setUsdGbpRate(asset.usdGbpRate);
+    setAssetId(asset?.assetId);
+    setAssetNumberSharesSold(asset?.numberSharesToBuy);
+    setUsdGbpRate(asset?.usdGbpRate);
+
+    const ipfsBytes32 = items[0]?.ipfsHash ? ipfsHashBytes32func(items[0]?.ipfsHash) : '0x';
+    setIpfsHashBytes32(ipfsBytes32);
+    setIpfsHash(items[0]?.ipfsHash);
+
+    console.log("ipfs bytes 32 === ", ipfsBytes32);	  
+    console.log("ipfs bytes 32 === ", ipfsBytes32);	  
+    console.log("ipfs bytes 32 === ", ipfsBytes32);	  
+    console.log("ipfs bytes 32 === ", ipfsBytes32);	  
+    console.log("ipfs bytes 32 === ", ipfsBytes32);	  
+    console.log("ipfs bytes 32 === ", ipfsBytes32);	  
+    console.log("ipfs bytes 32 === ", ipfsBytes32);	  
+    console.log("ipfs hash === ", ipfsHash);	  
+
 
     let sellers = items.reduce(
         (acc,item)=> {

@@ -10,13 +10,18 @@ function ShowAssetDetails(props) {
   const { contractNftAddress, assetDetails, setAssetDetails } = useContext(ContractContext);
 
 	    console.log("----contract number show adata --------------", props.assetNum);
+	const walletaddr = props.address;
+	console.log("wallet addr ", walletaddr);
   const config = {
     address: contractNftAddress,
     abi: abinft,
     overrides: { from: props.address },
-    functionName: 'getAsset',
+//    overrides: { walletaddr },
+    functionName: 'ipfsassets',
    args: [props.assetNum],
   };
+	console.log("config o == ", config);
+	console.log("config o == ", config);
 
 	const ipfs = create();
 	    console.log("----config show adata --------------", config);
@@ -31,12 +36,12 @@ const bytes32Hash = props.assetNum;
           // const ipfsAddr = bs58.encode(hashBytes);
          if ((isSuccess)  && (data) ) {
 
-const decodedHex = Buffer.from(bytes32Hash.slice(2), 'hex');
-const encodedIPFS = bs58.encode(Buffer.concat([Buffer.from([0x12, 0x20]), decodedHex]));
+             const decodedHex = Buffer.from(bytes32Hash.slice(2), 'hex');
+             const encodedIPFS = bs58.encode(Buffer.concat([Buffer.from([0x12, 0x20]), decodedHex]));
 
-console.log("ipfs =========",encodedIPFS); // This will output the original IPFS address
-	    console.log("----show adata 7777 state --------------", data);
-          setAssetDetails({...data, ipfsAddr:encodedIPFS});
+             console.log("ipfs =========",encodedIPFS); // This will output the original IPFS address
+	     console.log("----show adata 7777 state --------------", data);
+             setAssetDetails({...data, ipfsAddr:encodedIPFS});
          };
   }, [setAssetDetails]);
 

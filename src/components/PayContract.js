@@ -9,7 +9,7 @@ import {Button} from 'react-bootstrap';
 
 import abi from './abi';
 
-function PayContract() {
+function PayContract(props) {
 
 	 const  {
                 approveContract, setApproveContract,
@@ -27,19 +27,38 @@ function PayContract() {
 		 disputeRelease, setDisputeRelease,
 		 assetId, setAssetId,
 		 assetNumberSharesSold, setAssetNumberSharesSold,
-		 usdGbpRate, setUsdGbpRate
+		 usdGbpRate, setUsdGbpRate,
+		                                   ipfsHash, setIpfsHash,
+                   ipfsHashBytes32, setIpfsHashBytes32
+
                 } = useContext(ContractContext)
 
 
 	const stableCoinAmount = contractAmount/ (10 ** 6);
 
-        let argArr = [contractNumber, sellerAddress, notary.address, salesRelease, 
-		disputeRelease, contractAmount, assetId, assetNumberSharesSold, usdGbpRate  ];
+        const usdGbpRateInt = usdGbpRate !== null ? Math.floor(usdGbpRate*100) : null;
+
+        let argArr = [sellerAddress, props.address, notary.address, salesRelease, 
+		disputeRelease, contractAmount, ipfsHashBytes32, assetNumberSharesSold, usdGbpRateInt  ];
+         let argArr1 = [{
+		 seller: sellerAddress, 
+		 buyer: props.address, 
+		 notary: notary.address, 
+		 releaseTime: salesRelease, 
+	 	 disputeRelease: disputeRelease, 
+		 price: contractAmount, 
+		 assetIpfs: ipfsHashBytes32, 
+		 assetNumberSharesSold: assetNumberSharesSold, 
+		 usdGbpRate: usdGbpRateInt
+	         }  ];
   	    console.log("array ---- ", argArr, contractAddress);
             const {config, error} = usePrepareContractWrite({
                    address: contractAddress,
                    abi: abi,
                    functionName: 'approveAndTransferUSDC',
+		   overrides: {
+                      from: props.address
+		   },
                   // args:[contractNumber],
                    args: argArr
             })

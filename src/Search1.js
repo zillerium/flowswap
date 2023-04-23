@@ -19,7 +19,8 @@ const Search1 =  () => {
        const cart=useContext(CartContext);
 
        const searchDB = async (searchVal) => {
-          const baseUrl = "https://peacioapi.com:3000/searchHouseDB/"+searchVal; 
+          //const baseUrl = "https://peacioapi.com:3000/searchHouseDB/"+searchVal;
+	  const baseUrl = process.env.REACT_APP_SERVER_URL + "/searchHouseDB/" + searchVal;
           let res = await axios.get(baseUrl);
 	       console.log("res");
 	       console.log(res.data);
@@ -58,7 +59,7 @@ const Search1 =  () => {
                                  <td>    {value.assetAddress}  </td>
                                  <td>    {value.assetValue.toLocaleString()} {value.currency} </td>
 					                     <td>            <Link to={{
-                                             pathname:`/asset/${value.assetId}`,
+                                             pathname:`/asset/${value.ipfsHash}`,
                                                            state:{productId: value.dbKey, productPrice: value.partSalePrice}
                                                            }}>{value.assetAddress}</Link>
                                                            </td>

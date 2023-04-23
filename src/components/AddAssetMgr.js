@@ -28,7 +28,7 @@ function AddAssetMgr() {
                  assetIncome, assetYield, assetNumberBathrooms, assetNumberBedrooms, assetHouseType, hasDoubleGlazing,
                  assetRiskRating, assetPreferredNotary, currency, usdGbpRate, assetNumberSharesSold,
                 sellerAddress, setSellerAddress,
-                paySeller, setPaySeller,
+                paySeller, setPaySeller, contractAddress
                 } = useContext(ContractContext)
 
 console.log("seller address = llllllllllllllllllllllll", sellerAddress);
@@ -52,7 +52,9 @@ const PostData = async  (part) => {
 	console.log("part");
 	console.log(part);
 //	let x = {keyword: user.firstName};
-	const response = await axios.post("https://peacioapi.com:3000/addHouseAPI", part);
+	const serverUrl = `${process.env.REACT_APP_SERVER_URL}/addHouseAPI`;
+	console.log("server url ", serverUrl);
+	const response = await axios.post(serverUrl, part);
 	return response;
 }
 
@@ -79,8 +81,8 @@ return ( data ? <img src='http://ipfs.io/ipfs/QmSj5Yd6p377rYJWSoGnq29wehFFKkLZGS
     return (
         <>
   <header>
-      <h1>Add Asset</h1>
-      <p></p>
+
+      <h1>Add Asset</h1> <p>Contract Address - {process.env.REACT_APP_NFT_CONTRACT_ADDR}      </p>
 
        <AssetOwner />
        <AssetCheckBoxes />

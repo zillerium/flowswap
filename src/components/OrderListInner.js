@@ -23,7 +23,7 @@ function OrderListInner(props) {
         const   [approveEscrowContract, setApproveEscrowContract] = useState(false);
         const   [paySeller, setPaySeller] = useState(false);
         const   [paymentAmount, setPaymentAmount] = useState();
-        const   [erc20ContractAddress, setERC20ContractAddress] = useState('0x0FA8781a83E46826621b3BC094Ea2A0212e71B23');
+        const   [erc20ContractAddress, setERC20ContractAddress] = useState(process.env.REACT_APP_USDC_CONTRACT_ADDR);
         const   [contractAddress, setContractAddress] = useState(process.env.REACT_APP_CONTRACT_ADDR);
         const   [contractDetails, setContractDetails] = useState([{}]);
         const   [notary, setNotary]=useState({address: ''});

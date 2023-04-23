@@ -2,7 +2,7 @@ import {Container, Card, Button, Form, Row, Col} from 'react-bootstrap';
 import AdminInner from './AdminInner';
 import {Web3Modal, Web3Button} from '@web3modal/react';
 import {goerli,polygonMumbai,  avalanche, polygon } from "wagmi/chains";
-import {WagmiConfig,   useAccount,configureChains, createClient,  useNetwork,  chain} from "wagmi";
+import {WagmiConfig,   useAccount,configureChains, createClient,  useNetwork,  chain, useDisconnect} from "wagmi";
 import {EthereumClient, w3mConnectors, w3mProvider} from "@web3modal/ethereum"
 
 
@@ -24,6 +24,9 @@ function AdminCom() {
         const {chain} = useNetwork();
         const network = useNetwork();
 
+	//const { disconnect } = useDisconnect();
+	//                <button onClick={()=>disconnect()}>Disconnect</button>
+
 return (
   <div className="container">
        <WagmiConfig client={client}>
@@ -40,6 +43,8 @@ return (
           <div>
              <Web3Button></Web3Button>
           </div>
+	<div>
+	</div>
            <div>
                 {isConnected ? <>Address: {address}</>:<>User not connected</>}
            </div>

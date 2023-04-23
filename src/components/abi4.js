@@ -1,4 +1,4 @@
-const abi=[
+[
 	{
 		"inputs": [],
 		"stateMutability": "nonpayable",
@@ -568,5 +568,5 @@ const abi=[
 		"stateMutability": "view",
 		"type": "function"
 	}
-]
-export default abi;
+]:wq
+

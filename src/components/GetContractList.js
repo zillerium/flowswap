@@ -4,7 +4,10 @@ import { ContractContext } from './ContractContext';
 import ContractDetails from './ContractDetails';
 import abi from './abi';
 
+
 function GetContractList(props) {
+
+
   const { contractAddress, 
 	  buyerContracts, setBuyerContracts,
 	  sellerContracts, setSellerContracts

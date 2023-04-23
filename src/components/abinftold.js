@@ -284,6 +284,60 @@ const abinft = [
 	{
 		"inputs": [
 			{
+				"internalType": "bytes32",
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"name": "assets",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "assetNft",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "assetValue",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "assetNumberShares",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "assetIncome",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "assetYield",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "assetRiskRating",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "currency",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "assetNumberSharesSold",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "address",
 				"name": "",
 				"type": "address"
@@ -346,44 +400,12 @@ const abinft = [
 	{
 		"inputs": [
 			{
-				"internalType": "address",
-				"name": "walletAddress",
-				"type": "address"
-			}
-		],
-		"name": "getAssetsByOwner",
-		"outputs": [
-			{
-				"internalType": "bytes32[]",
-				"name": "",
-				"type": "bytes32[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "getWallets",
-		"outputs": [
-			{
-				"internalType": "address[]",
-				"name": "",
-				"type": "address[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
 				"internalType": "bytes32",
-				"name": "",
+				"name": "_ipfsAddr",
 				"type": "bytes32"
 			}
 		],
-		"name": "ipfsassets",
+		"name": "getAsset",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -435,6 +457,25 @@ const abinft = [
 				"internalType": "address",
 				"name": "owner",
 				"type": "address"
+			}
+		],
+		"name": "getAssetsByOwner",
+		"outputs": [
+			{
+				"internalType": "bytes32[]",
+				"name": "",
+				"type": "bytes32[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
 			},
 			{
 				"internalType": "address",
@@ -455,79 +496,12 @@ const abinft = [
 	},
 	{
 		"inputs": [],
-		"name": "listAllNFTVals",
-		"outputs": [
-			{
-				"internalType": "uint256[]",
-				"name": "",
-				"type": "uint256[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
 		"name": "name",
 		"outputs": [
 			{
 				"internalType": "string",
 				"name": "",
 				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "nftassets",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "assetNft",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "assetValue",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "assetNumberShares",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "assetIncome",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "assetYield",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "assetRiskRating",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "currency",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "assetNumberSharesSold",
-				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -615,44 +589,7 @@ const abinft = [
 		],
 		"stateMutability": "view",
 		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "walletExists",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "wallets",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
 	}
 ]
+
 export default abinft;

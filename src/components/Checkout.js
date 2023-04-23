@@ -8,8 +8,9 @@ const Checkout = (props) => {
  const cart = useContext(CartContext);
       console.log(cart.items.length);
 	const checkout = async () => {
+//  const response = await axios.post("https://peacioapi.com:3000/checkouthouse", cart.items);
 
-   const response = await axios.post("https://peacioapi.com:3000/checkouthouse", cart.items);
+   const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/checkouthouse`, cart.items);
                 console.log(response);
                 const url=response.data.data.url;
                 console.log(response.data.data.url);

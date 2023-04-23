@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import React, {useState} from 'react';
+import Welcome from './Welcome.js';
 import Search1 from './Search1.js';
 import {useQuery, useMutation} from 'react-query';
 import axios from 'axios';
@@ -60,8 +61,10 @@ const PostData = async  (part) => {
 	console.log("part");
 	console.log(part);
 //	let x = {keyword: user.firstName};
-	const response = await axios.post("https://peacioapi.com:3000/addPartAPI", part);
-//	console.log(x);
+	//const response = await axios.post("https://peacioapi.com:3001/addPartAPI", part);
+	const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/addPartAPI`, part);
+
+	//	console.log(x);
 //	const response = await fetch("https://peacioapi.com:3000/getDBData", {
   //         method: 'POST',
 //	   body: x,
@@ -111,11 +114,10 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
 
 	    </NavbarComponent>
                 <Routes>
-                     <Route index element={<Search1 />} />                    
+                     <Route index element={<Welcome />} />                    
                      <Route path="succcess" element={<Success />} />                    
                      <Route path="cancel" element={<Cancel />} />     
                      <Route path="/asset/:productId" element={<AssetShowPage />} />
-                     <Route path="/addasset/" element={<AddApiProduct />} />
                      <Route path="/listassets/" element={<ListAssets />} />
                      <Route path="/invest/" element={<Pay />} />
                      <Route path="/portfolio/" element={<Orders />} />

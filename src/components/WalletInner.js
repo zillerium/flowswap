@@ -21,7 +21,7 @@ function WalletInner(props) {
         const   [approveEscrowContract, setApproveEscrowContract] = useState(false);
         const   [paySeller, setPaySeller] = useState(false);
         const   [paymentAmount, setPaymentAmount] = useState();
-        const   [erc20ContractAddress, setERC20ContractAddress] = useState('0x0FA8781a83E46826621b3BC094Ea2A0212e71B23');
+        const   [erc20ContractAddress, setERC20ContractAddress] = useState(process.env.REACT_APP_USDC_CONTRACT_ADDR);
         const   [contractAddress, setContractAddress] = useState(process.env.REACT_APP_CONTRACT_ADDR);
         const   [contractDetails, setContractDetails] = useState([{}]);
         const   [notary, setNotary]=useState({address: ''});
@@ -33,6 +33,8 @@ function WalletInner(props) {
         const   [assetId, setAssetId] = useState(0);
         const   [assetNumberSharesSold, setAssetNumberSharesSold] = useState(0);
         const   [usdGbpRate, setUsdGbpRate] = useState(0);
+        const   [ipfsHash, setIpfsHash] = useState('0x');
+        const   [ipfsHashBytes32, setIpfsHashBytes32] = useState('0x');
  
 	const isConnectedWallet = props.isConnected;
         const payer = props.address;
@@ -70,7 +72,9 @@ return (
                 allowanceAmount, setAllowanceAmount,
               assetId, setAssetId,
                  assetNumberSharesSold, setAssetNumberSharesSold,
-                 usdGbpRate, setUsdGbpRate
+                 usdGbpRate, setUsdGbpRate,
+			            ipfsHash, setIpfsHash,
+                   ipfsHashBytes32, setIpfsHashBytes32
 
         }}>
         <div>
@@ -82,7 +86,8 @@ return (
         <div>
 	   <div className="row">
   	       <div className="col-12 text-center">
-	           <h2>Settle Contract</h2>
+	           <h2>Pay Escrow</h2>
+	<p>{process.env.REACT_APP_CONTRACT_ADDR}</p>
                </div>
    	   </div>
 
@@ -97,7 +102,7 @@ return (
 
 	   <div className="row">
                <div className="col-12 text-center">
-	{allowanceAmount>0 ? <PayContractMgr /> : <div>Approve Wallet First </div>}
+	{allowanceAmount>0 ? <PayContractMgr address={props.address} /> : <div>Approve Wallet First </div>}
 	       </div>
            </div>
 	</div>

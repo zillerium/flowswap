@@ -17,10 +17,10 @@ const AssetFinancials = ({
     <div className="font-weight-bold mb-1">Asset Value</div>
   </Col>
   <Col md={3} className="text-left">
-    <div className="mb-1">{assetValue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} GBP</div>
+    <div className="mb-1">{assetValue?.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} GBP</div>
   </Col>
   <Col md={3} className="text-left">
-    <div className="mb-1">{(assetValue * usdGbpRate).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} USD</div>
+    <div className="mb-1">{(assetValue * usdGbpRate)?.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} USD</div>
   </Col>
 </Row>
 
@@ -32,10 +32,10 @@ const AssetFinancials = ({
     <div className="font-weight-bold mb-1">Income</div>
   </Col>
   <Col md={3} className="text-left">
-    <div className="mb-1">{assetIncome.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} GBP</div>
+    <div className="mb-1">{assetIncome?.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} GBP</div>
   </Col>
   <Col md={3} className="text-left">
-    <div className="mb-1">{(assetIncome * usdGbpRate).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} USD</div>
+    <div className="mb-1">{(assetIncome * usdGbpRate)?.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} USD</div>
   </Col>
 </Row>
 
@@ -45,7 +45,7 @@ const AssetFinancials = ({
           <div className="font-weight-bold mb-1">Yield</div>
         </Col>
         <Col md={6} className="text-left">
-          <div className="mb-1">{assetYield}%</div>
+          <div className="mb-1">{(assetYield / 100)?.toFixed(2)}%</div>
         </Col>
       </Row>
       <div className="border-bottom"></div>
@@ -63,7 +63,7 @@ const AssetFinancials = ({
           <div className="font-weight-bold mb-1">Number shares</div>
         </Col>
         <Col md={6} className="text-left">
-          <div className="mb-1">{assetNumberShares.toLocaleString(2)}</div>
+          <div className="mb-1">{assetNumberShares?.toLocaleString(2)}</div>
         </Col>
       </Row>
     </div>

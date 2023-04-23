@@ -56,7 +56,9 @@ const PostData = async  (part) => {
 	console.log("part");
 	console.log(part);
 //	let x = {keyword: user.firstName};
-	const response = await axios.post("https://peacioapi.com:3000/addHouseAPI", part);
+// old	const response = await axios.post("https://peacioapi.com:3000/addHouseAPI", part);
+        const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/addHouseAPI`, part);
+
 //	console.log(x);
 //	const response = await fetch("https://peacioapi.com:3000/getDBData", {
   //         method: 'POST',

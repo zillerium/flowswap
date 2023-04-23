@@ -4,7 +4,7 @@ import PayContract from './PayContract'
 
 import {Button} from 'react-bootstrap';
 
-function PayContractMgr() {
+function PayContractMgr(props) {
 
 	 const  {
 		 allowanceAmount, setAllowanceAmount,
@@ -22,7 +22,7 @@ console.log("---------------- seller address allowance -----------------", allow
         <>
 
         {allowanceAmount}
-        {  sellerAddress && !paySeller && <PayContract /> }
+        {  sellerAddress && !paySeller && <PayContract address={props.address} /> }
         { !sellerAddress && <Button variant="secondary" disabled>4. Pay to Escrow</Button> }
         { paySeller && <div>Contract Paid</div> }
         { !paySeller && <div>Contract unPaid</div> }

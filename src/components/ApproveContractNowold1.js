@@ -6,7 +6,7 @@ import {ContractContext} from './ContractContext'
 import abierc20 from './abierc20';
 import { Button, } from 'react-bootstrap';
 
-function ApproveContractNow() {
+function ApproveContractNow(props) {
 
 	 const  {
                 erc20ContractAddress,
@@ -26,20 +26,32 @@ function ApproveContractNow() {
         console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
         console.log("tot", totAmount, contractAddress, erc20ContractAddress);
 // this handles just one seller now, but this should be an array to handle all sellers
+	// this is the stablecoin contract approval not the custom made contract for flowswap
         const {config, error} = usePrepareContractWrite({
                    address: erc20ContractAddress,
                    abi: abierc20,
                    functionName: 'approve',
+		  overrides: {
+                      from: props.address
+                   },
+
                    args:[contractAddress, totAmount]
         })
-console.log("hhh confifg ----- ", config);
-console.log("hhh confifg ----- ", config);
-console.log("hhh confifg ----- ", config);
+
+console.log("config for approve === ", config);
+console.log("config for error === ", error);
+console.log("config for approve === ", config);
+console.log("config for approve === ", config);
+console.log("config for approve === ", config);
+
         const {data, isLoading, isSuccess, write} = useContractWrite(config)
 	if (isLoading) {
              return <div>Loading ...</div>
 	}
-	console.log(data)
+	console.log("data, ", data)
+	console.log("isloading, ", isLoading)
+	console.log("isSuccess, ", isSuccess)
+	console.log("error, ", error)
 
 
 	if (isSuccess) {

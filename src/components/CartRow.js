@@ -10,7 +10,7 @@ const CartRow = ({
   onAddOneToCart,
   onRemoveOneFromCart
 }) => {
-  const { assetId, sellerAddress, assetAddress, pricePerShare, usdGbpRate, numberSharesToBuy } = item;
+  const { assetId, ipfsHash, sellerAddress, assetAddress, pricePerShare, usdGbpRate, numberSharesToBuy } = item;
 
   const [hovering, setHovering] = useState(false);
   const [showFullRow, setShowFullRow] = useState(false);
@@ -31,10 +31,10 @@ const CartRow = ({
       <tr
       >
         <td>
-          <Link to={`/asset/${assetId}`}>{assetId}</Link>
+          <Link to={`/asset/${ipfsHash}`}>{ipfsHash?.slice(0,5)}</Link>
         </td>
         <td>
-          <Link to={`/asset/${assetId}`}>{assetAddress}</Link>
+          <Link to={`/asset/${ipfsHash}`}>{assetAddress}</Link>
         </td>
         <td
 

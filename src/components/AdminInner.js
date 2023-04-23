@@ -8,7 +8,7 @@ function AdminInner(props) {
         const   [allowanceAmount, setAllowanceAmount] = useState(0);
         const   [approveContract, setApproveContract] = useState(false);
         const   [paymentAmount, setPaymentAmount] = useState();
-        const   [erc20ContractAddress, setERC20ContractAddress] = useState('0x0FA8781a83E46826621b3BC094Ea2A0212e71B23');
+        const   [erc20ContractAddress, setERC20ContractAddress] = useState(process.env.REACT_APP_USDC_CONTRACT_ADDR);
         const   [contractAddress, setContractAddress] = useState(process.env.REACT_APP_CONTRACT_ADDR);
         const   [approvedMsg, setApprovedMsg] = useState("not approved");
         
@@ -39,9 +39,10 @@ return (
                  <CheckAllowance  address={props.address} />
              </div>
       </div>
+<div>allowance - {allowanceAmount}</div>
 
 	   <div className="row">
-	{allowanceAmount==0 ? <ApproveContract /> : <div>already approved</div>}
+	{allowanceAmount==0 ? <ApproveContract address={props.address} /> : <div>already approved</div>}
 	</div>
 	</div>
         </ContractContext.Provider>

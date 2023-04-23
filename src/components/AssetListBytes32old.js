@@ -2,14 +2,13 @@ import { useEffect, useState, useContext } from 'react';
 import { useContractRead } from 'wagmi';
 import { ContractContext } from './ContractContext';
 import ShowAssetDetails from './ShowAssetDetails';
-import AssetDetailsTable from './AssetDetailsTable';
 import abinft from './abinft';
 import {BigNumber} from 'bignumber.js';
 import {  Button, ListGroup, Table } from 'react-bootstrap';
 import {Link, Routes, Route, useNavigate } from 'react-router-dom';
 
-function AssetListBytes32(props) {
 
+function AssetListBytes32(props) {
   const { contractNftAddress, assetList, assetDetails, setAssetDetails } = useContext(ContractContext);
 	const [selAsset, setSelAsset]=useState();
 console.log("jjjjjjjjjjjjjjj", assetList);
@@ -74,44 +73,84 @@ console.log("asset details 0 ==============", assetDetails.currency);
         const assetNumberShares = new Number(assetDetails?.assetNumberShares?.toString()).toLocaleString(2);
 
 
-
-
-console.log("sel asset ",selAsset);
-console.log("sel asset income ", assetDetails);
-  return (
+   return (
     <div>
-      <div className="row">
-        <div className="col-6">
-          <h3>List of Assets:</h3>
-          <ListGroup> 
-            {props.assets && props.assets.map((assetNum) => (
-              <ListGroup.Item key={assetNum}>
-                <Button variant="light" onClick={() => showAssetDetailsFunc(assetNum)}>
-                  {assetNum.slice(0, 10)}
-                </Button>
-              </ListGroup.Item>
-            ))}
-          </ListGroup>
-        </div>
+	   <div className="row">
+       <div className="col-6">
+      <h3>List of Assets:</h3>
+      <ListGroup
+	   > 
+        {props.assets && props.assets.map((assetNum) => (
+          <ListGroup.Item key={assetNum}>
+            <Button variant="light" onClick={() => showAssetDetailsFunc(assetNum)}>
+              {assetNum}
+            </Button>
+          </ListGroup.Item>
+        ))}
+      </ListGroup>
+     </div>
 
+      {selAsset && <ShowAssetDetails address={props.address} assetNum={selAsset} />}
 
+       <div className="col-6">
       {selAsset && assetDetails?.assetIncome && JSON.stringify(assetDetails) !== JSON.stringify([{}]) && (
-        <div className="col-6"> 
+        <div> 
+
           <h3>Asset Details:  </h3>
-          <AssetDetailsTable
-            selAsset={selAsset}
-            assetDetails={assetDetails}
-            assetValueLocale={assetValueLocale}
-            assetNumberShares={assetNumberShares}
-            assetIncomeLocale={assetIncomeLocale}
-          />
+	      <Table bordered striped>
+            <tbody>
+              <tr>
+                <td><strong>Bytes32:</strong></td>
+                <td>{selAsset?.slice(0,4)}</td>
+              </tr>
+              <tr>
+                <td><strong>Addr:</strong></td>
+                <td><a target="_blank" href={`https://ipfs.io/ipfs/${assetDetails?.ipfsAddr}`}>{assetDetails?.ipfsAddr}</a></td>
+              </tr>
+              <tr>
+                <td><strong>Link:</strong></td>
+                <td><Link to={{
+			pathname:`/asset/${assetDetails?.ipfsAddr}`, state:{productId: null}
+		}}>Offer Page</Link>
+</td>
+              </tr>
+              <tr>
+                <td><strong>Nft:</strong></td>
+                <td>{assetDetails?.assetNft?.toString()}</td>
+              </tr>
+              <tr>
+                <td><strong>Value:</strong></td>
+                <td>{assetValueLocale}</td>
+              </tr>
+              <tr>
+                <td><strong>Number Shares:</strong></td>
+                <td>{assetNumberShares}</td>
+              </tr>
+              <tr>
+                <td><strong>Income:</strong></td>
+                <td>{assetIncomeLocale}</td>
+              </tr>
+              <tr>
+                <td><strong>Yield:</strong></td>
+	        <td>{ (assetDetails?.assetYield / 100)?.toFixed(2)}%</td>
+              </tr>
+              <tr>
+                <td><strong>Risk:</strong></td>
+                <td>{assetDetails?.assetRiskRating?.toString()}</td>
+              </tr>
+              <tr>
+                <td><strong>Currency:</strong></td>
+                <td>{assetDetails?.currency}</td>
+              </tr>
+            </tbody>
+          </Table>
+
         </div>
       )}
+     </div>
     </div>
-        {selAsset && <ShowAssetDetails address={props.address} assetNum={selAsset} />}
     </div>
   );
 }
 
 export default AssetListBytes32;
-

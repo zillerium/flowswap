@@ -16,7 +16,8 @@ const AssetShow = () => {
 
   const { productId } = useParams();
   const cart = useContext(CartContext);
-  const baseUrl = `https://peacioapi.com:3000/getHouse/${productId}`;
+  //const baseUrl = `https://peacioapi.com:3000/getHouse/${productId}`;
+  const baseUrl = `${process.env.REACT_APP_SERVER_URL}/getHouse/${productId}`;
 
   const { data, isLoading, isError, refetch } = useQuery(
     ["cat"],
@@ -33,7 +34,7 @@ const AssetShow = () => {
 
 
   const [quantity, setQuantity] = useState(1);
-const [assetIncomeForQuantity, setAssetIncomeForQuantity] = useState(0);
+  const [assetIncomeForQuantity, setAssetIncomeForQuantity] = useState(0);
   const [assetYieldForQuantity, setAssetYieldForQuantity] = useState(0);
   const [assetCostForQuantity, setAssetCostForQuantity] = useState(0);
   const [assetCostPerShare, setAssetCostPerShare] = useState(0);
@@ -73,12 +74,12 @@ useEffect(()=> {
       <Container className="mt-4 no-gutters mx-auto" fluid>
         <Row className="my-4">
           <Col>
-            <h1>{data.data[0].assetAddress}</h1>
+            <h1>{data.data[0]?.assetAddress}</h1>
           </Col>
         </Row>
         <Row >
           <Col xs={12} sm={12} md={5} lg={5} xl={5}>
-            <AssetImages imageUrl={`https://ipfs.io/ipfs/${data.data[0].ipfsImageHash}`} alt={data.data[0].assetAddress} />
+            <AssetImages imageUrl={`https://ipfs.io/ipfs/${data.data[0]?.ipfsImageHash}`} alt={data.data[0]?.assetAddress} />
           </Col>
           <Col >
              <Row >
@@ -124,22 +125,22 @@ useEffect(()=> {
         <Row className="my-4">
            <Col>
             <AssetFinancials
-              assetValue={data.data[0].assetValue}
-              assetIncome={data.data[0].assetIncome}
-              assetYield={data.data[0].assetYield}
-              assetRiskRating={data.data[0].assetRiskRating}
-              assetNumberShares={data.data[0].assetNumberShares}
-              usdGbpRate={data.data[0].usdGbpRate}
+              assetValue={data.data[0]?.assetValue}
+              assetIncome={data.data[0]?.assetIncome}
+              assetYield={data.data[0]?.assetYield}
+              assetRiskRating={data.data[0]?.assetRiskRating}
+              assetNumberShares={data.data[0]?.assetNumberShares}
+              usdGbpRate={data.data[0]?.usdGbpRate}
             />
            </Col>
 	  </Row>
 	  <Row>
            <Col>
              <AssetCheckboxList checkboxes={[
-               { label: "Tenant", checked: data.data[0].hasTenant },
-               { label: "Garden", checked: data.data[0].hasGarden },
-               { label: "Parking", checked: data.data[0].hasParking },
-               { label: "Double Glazing", checked: data.data[0].hasDoubleGlazing },
+               { label: "Tenant", checked: data.data[0]?.hasTenant },
+               { label: "Garden", checked: data.data[0]?.hasGarden },
+               { label: "Parking", checked: data.data[0]?.hasParking },
+               { label: "Double Glazing", checked: data.data[0]?.hasDoubleGlazing },
              ]} />
            </Col>
         </Row>
@@ -147,14 +148,14 @@ useEffect(()=> {
         <Row className="my-4">
            <Col>
              <AssetFeatures
-                     numBathrooms={data.data[0].assetNumberBathrooms}
-                     numBedrooms={data.data[0].assetNumberBedrooms}
-                      houseType={data.data[0].assetHouseType}
+                     numBathrooms={data.data[0]?.assetNumberBathrooms}
+                     numBedrooms={data.data[0]?.assetNumberBedrooms}
+                      houseType={data.data[0]?.assetHouseType}
               />
 
             <hr />
-            <p>Asset Owner Name: {data.data[0].assetOwnerName}</p>
-	  <p><a href={`http://ipfs.io/ipfs/${data.data[0].ipfsHash}`} target="_blank">Asset Prospectus</a></p>
+            <p>Asset Owner Name: {data.data[0]?.assetOwnerName}</p>
+	  <p><a href={`http://ipfs.io/ipfs/${data.data[0]?.ipfsHash}`} target="_blank">Asset Prospectus</a></p>
             <p>Seller: {sellerAddress}</p>
             <p>USD GBP Rate: {usdGbpRate}</p>
             <p>** All investments are made in USD and at a fixed exchange rate for 12 months ** </p>

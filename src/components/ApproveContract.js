@@ -4,7 +4,7 @@ import ApproveContractNow from './ApproveContractNow'
 
 import { Button, } from 'react-bootstrap';
 
-function ApproveContract() {
+function ApproveContract(props) {
 
 	 const  {
                 allowanceAmount,
@@ -18,7 +18,7 @@ function ApproveContract() {
 
 
 
-        { allowanceAmount==0 && <ApproveContractNow />  }
+        { allowanceAmount==0 && <ApproveContractNow   />  }
 		</div>
 
     </div>
